@@ -59,3 +59,16 @@ Skip:  addi $a0, $a0, -1
        li   $v0, 1            
        add  $a0, $zero, $a2   
        syscall
+              li   $v0, 4            
+       la   $a0, newline      
+       syscall
+       
+       add  $a0, $t0, $zero   
+       addi $a0, $a0, -1             
+       add  $t0, $a1, $zero   
+       add  $a1, $a3, $zero   
+       add  $a3, $t0, $zero   
+       j    hanoi                    
+       jr   $ra
+Leave:
+
