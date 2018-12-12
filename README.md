@@ -29,3 +29,33 @@ hanoi: addi $sp, $sp, -20
        beq  $t0, $zero, Skip  
        addi $sp, $sp,   20    
        jr   $ra  
+Skip:  addi $a0, $a0, -1      
+       add  $t0, $a2, $zero   
+       add  $a2, $a3, $zero   
+       add  $a3, $t0, $zero   
+       jal  hanoi                    
+       lw   $a3, 0($sp)       
+       lw   $a2, 4($sp)       
+       lw   $a1, 8($sp)       
+       lw   $a0, 12($sp)      
+       lw   $ra, 16($sp)      
+       addi $sp, $sp, 20      
+       add  $t0, $a0, $zero   
+       li   $v0, 4            
+       la   $a0, moveDisk     
+       syscall
+       li   $v0, 1            
+       add  $a0, $t0, $zero   
+       syscall
+       li   $v0, 4            
+       la   $a0, fromPeg      	
+       syscall
+       li   $v0, 1            
+       add  $a0, $zero, $a1   
+       syscall
+       li   $v0, 4            
+       la   $a0, toPeg        
+       syscall
+       li   $v0, 1            
+       add  $a0, $zero, $a2   
+       syscall
